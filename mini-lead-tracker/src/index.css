@@ -1,0 +1,134 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+:root {
+  --font-head: 'Syne', sans-serif;
+  --font-mono: 'DM Mono', monospace;
+
+  /* Core */
+  --ink:      #1a1a2e;
+  --ink2:     #4a4a6a;
+  --ink3:     #8888aa;
+  --surface:  #f4f3f8;
+  --card:     #ffffff;
+  --border:   rgba(0,0,0,0.08);
+  --border2:  rgba(0,0,0,0.14);
+
+  /* Accent */
+  --accent:       #5c4fff;
+  --accent-soft:  #ede9ff;
+  --accent-light: rgba(92,79,255,0.10);
+  --accent-glow:  rgba(92,79,255,0.22);
+
+  /* Stage colours */
+  --prospecting-c:  #0f6e56; --prospecting-bg: #e1f5ee;
+  --contacted-c:    #185fa5; --contacted-bg:   #e6f1fb;
+  --qualified-c:    #854f0b; --qualified-bg:   #faeeda;
+  --proposal-c:     #993556; --proposal-bg:    #fbeaf0;
+  --won-c:          #3b6d11; --won-bg:          #eaf3de;
+  --lost-c:         #a32d2d; --lost-bg:         #fcebeb;
+
+  /* Shadows */
+  --shadow:       0 1px 3px rgba(0,0,0,0.07), 0 4px 14px rgba(0,0,0,0.05);
+  --shadow-hover: 0 2px 8px rgba(0,0,0,0.1),  0 8px 24px rgba(0,0,0,0.08);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body, #root {
+  min-height: 100vh;
+  font-family: var(--font-head);
+  background: var(--surface);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.14); border-radius: 99px; }
+
+@layer components {
+
+  /* ── PRIMARY BUTTON ── */
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-family: var(--font-head);
+    font-size: 14px; font-weight: 600;
+    background: var(--accent); color: #fff; border: none;
+    cursor: pointer;
+    transition: transform 0.15s, box-shadow 0.15s;
+    white-space: nowrap;
+  }
+  .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 4px 14px rgba(92,79,255,0.35); }
+  .btn-primary:active { transform: scale(0.97); }
+
+  /* ── GHOST BUTTON ── */
+  .btn-ghost {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-family: var(--font-head);
+    font-size: 14px; font-weight: 600;
+    background: transparent; color: var(--ink2);
+    border: 0.5px solid var(--border2);
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .btn-ghost:hover { background: var(--surface); }
+
+  /* ── DANGER BUTTON ── */
+  .btn-danger {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-family: var(--font-head);
+    font-size: 14px; font-weight: 600;
+    background: #fcebeb; color: #a32d2d; border: none;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .btn-danger:hover { background: #f7c1c1; }
+
+  /* ── ICON BUTTON ── */
+  .btn-icon {
+    width: 30px; height: 30px;
+    border-radius: 8px;
+    border: 0.5px solid var(--border2);
+    background: transparent; color: var(--ink3);
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.13s;
+    flex-shrink: 0;
+  }
+  .btn-icon:hover { background: var(--surface); color: var(--ink); }
+  .btn-icon.danger:hover { background: #fcebeb; color: #a32d2d; border-color: #f09595; }
+
+  /* ── FORM INPUT ── */
+  .form-input {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 10px;
+    font-family: var(--font-head);
+    font-size: 14px;
+    background: var(--surface);
+    border: 0.5px solid var(--border2);
+    color: var(--ink);
+    outline: none;
+    transition: border-color 0.15s, box-shadow 0.15s;
+    -webkit-appearance: none;
+  }
+  .form-input::placeholder { color: var(--ink3); }
+  .form-input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(92,79,255,0.12);
+    background: #fff;
+  }
+  .form-input option { background: #fff; color: var(--ink); }
+
+}

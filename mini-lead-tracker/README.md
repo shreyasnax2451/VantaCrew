@@ -8,9 +8,9 @@ A premium, single-page sales prospect management app built as part of the VantaC
 
 | Layer | Choice | Why |
 |---|---|---|
-| Framework | **React 18 + Vite** | Fast HMR, minimal config, industry standard |
+| Framework | **React 19 + Vite** | Fast HMR, minimal config, industry standard |
 | Language | **TypeScript** | Self-documenting types, fewer runtime bugs |
-| Styling | **TailwindCSS v4** | Utility-first, rapid iteration |
+| Styling | **TailwindCSS v3** | Utility-first, rapid iteration |
 | Animation | **Framer Motion** | Production-grade spring physics animations |
 | Persistence | **localStorage** | Zero backend, instant data survival across refreshes |
 
@@ -20,9 +20,9 @@ A premium, single-page sales prospect management app built as part of the VantaC
 
 - ✅ **Add / Edit / Delete** prospects with animated modal
 - ✅ **Delete confirmation** dialog (accidental delete protection)
-- ✅ **Stage filter pills** — click any stage to filter, click again to see all
+- ✅ **Native Drag & Drop Kanban Board** — smoothly move prospects between stages
 - ✅ **Live search** by name, company, or email
-- ✅ **Per-stage counters** that update in real time
+- ✅ **Per-column counters** that update in real time
 - ✅ **Pipeline value** calculated from filtered leads
 - ✅ **localStorage persistence** — data survives browser refresh
 - ✅ **Responsive** — works on mobile and desktop
@@ -67,9 +67,9 @@ A premium, single-page sales prospect management app built as part of the VantaC
 ```
 src/
 ├── components/
-│   ├── StageCounter.tsx   # Filter pills + live counts
-│   ├── LeadCard.tsx       # Individual lead card with hover actions
-│   ├── LeadList.tsx       # Animated list container + empty state
+│   ├── KanbanBoard.tsx    # Kanban layout orchestration
+│   ├── KanbanColumn.tsx   # Droppable columns + empty states
+│   ├── KanbanCard.tsx     # Draggable individual lead card
 │   ├── LeadForm.tsx       # Add/edit modal with validation
 │   └── ConfirmDialog.tsx  # Delete confirmation modal
 ├── hooks/

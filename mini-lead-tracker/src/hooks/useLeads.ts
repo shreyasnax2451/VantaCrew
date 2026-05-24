@@ -22,7 +22,6 @@ function saveToStorage(leads: Lead[]): void {
 
 export function useLeads() {
   const [leads, setLeads] = useState<Lead[]>(() => loadFromStorage());
-  const [activeFilter, setActiveFilter] = useState<Stage | 'All'>('All');
   const [searchQuery, setSearchQuery] = useState('');
 
   // Persist to localStorage on every change
@@ -66,37 +65,26 @@ export function useLeads() {
     );
   }, []);
 
-  // Stage counts for the top counter bar
-  const stageCounts = leads.reduce((acc, lead) => {
-    acc[lead.stage] = (acc[lead.stage] || 0) + 1;
-    return acc;
-  }, {} as Record<string, number>);
-
-  // Filtered + searched leads
-  const filteredLeads = leads.filter(lead => {
-    const matchesStage = activeFilter === 'All' || lead.stage === activeFilter;
+  // Searched leads
+  const searchedLeads = leads.filter(lead => {
     const q = searchQuery.toLowerCase();
-    const matchesSearch =
+    return (
       !q ||
       lead.name.toLowerCase().includes(q) ||
       lead.company.toLowerCase().includes(q) ||
-      lead.email.toLowerCase().includes(q);
-    return matchesStage && matchesSearch;
+      lead.email.toLowerCase().includes(q)
+    );
   });
 
-  // Total pipeline value of filtered leads
-  const pipelineValue = filteredLeads.reduce((sum, lead) => {
+  // Total pipeline value of searched leads
+  const pipelineValue = searchedLeads.reduce((sum, lead) => {
     const v = parseFloat(lead.value.replace(/[^0-9.]/g, '')) || 0;
     return sum + v;
   }, 0);
 
   return {
     leads,
-    filteredLeads,
-    stageCounts,
     pipelineValue,
-    activeFilter,
-    setActiveFilter,
     searchQuery,
     setSearchQuery,
     addLead,
